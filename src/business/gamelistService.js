@@ -70,7 +70,6 @@ export async function getMostLikedGameLists() {
   }
 }
 
-// ¡CORRECCIÓN AQUÍ! Usar fetch directo y manejar 204 No Content
 export async function likeGameList(listId) {
   try {
     const response = await fetch(`${BASE_URL}/like/${listId}`, {
@@ -78,11 +77,10 @@ export async function likeGameList(listId) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({}) // PUTs a menudo requieren un cuerpo, aunque sea vacío
+      body: JSON.stringify({}) 
     });
 
     if (!response.ok) {
-      // Manejo de errores detallado como en apiClient
       let errorMsg = `Error al dar "me gusta": ${response.status}`;
       try {
         const errorBody = await response.json();
@@ -95,11 +93,9 @@ export async function likeGameList(listId) {
       }
       throw new Error(errorMsg);
     }
-    // Si el backend devuelve 204 No Content, no intentar leer JSON
     if (response.status === 204) {
-      return null; // O un booleano para indicar éxito
+      return null; 
     }
-    // Si no es 204, y la respuesta es OK, entonces se espera JSON (menos común para like/unlike)
     return response.json(); 
   } catch (error) {
     console.error(`Error liking game list with ID ${listId}:`, error);
@@ -107,7 +103,6 @@ export async function likeGameList(listId) {
   }
 }
 
-// ¡CORRECCIÓN AQUÍ! Usar fetch directo y manejar 204 No Content
 export async function unlikeGameList(listId) {
   try {
     const response = await fetch(`${BASE_URL}/unlike/${listId}`, {
@@ -115,7 +110,7 @@ export async function unlikeGameList(listId) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({}) // PUTs a menudo requieren un cuerpo, aunque sea vacío
+      body: JSON.stringify({}) 
     });
 
     if (!response.ok) {

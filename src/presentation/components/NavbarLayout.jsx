@@ -16,7 +16,7 @@ export default function NavbarLayout({ children }) {
     useEffect(() => {
         const payload = UserSessionManager.getPayload();
         if (payload?._id) {
-            setRole(payload.role); // Guardamos el rol del usuario
+            setRole(payload.role);
             getUserById(payload._id)
                 .then((res) => {
                     setUser({
@@ -54,7 +54,7 @@ export default function NavbarLayout({ children }) {
         setShowDropdown(false);
     };
 
-     const handleLogout = () => {
+    const handleLogout = () => {
         UserSessionManager.clearToken();
         navigate('/login');
     };
@@ -101,13 +101,13 @@ export default function NavbarLayout({ children }) {
                         <li className="nav-item"><Link className="nav-link text-dark fw-semibold" to="/allGames">Juegos</Link></li>
                         <li className="nav-item"><Link className="nav-link text-dark" to="/allList">Listas</Link></li>
                         <li className="nav-item"><Link className="nav-link text-dark" to="/friend">Amigos</Link></li>
-                         {role === 'admin' && (
-                        <li className="nav-item"><Link className="nav-link text-dark" to="/admin">Control de Administrador</Link></li>
-                            )}
+                        {role === 'admin' && (
+                            <li className="nav-item"><Link className="nav-link text-dark" to="/admin">Control de Administrador</Link></li>
+                        )}
 
-                             {role === 'moderator' && (
-                        <li className="nav-item"><Link className="nav-link text-dark" to="/admin">Control de Moderación</Link></li>
-                            )}
+                        {role === 'moderator' && (
+                            <li className="nav-item"><Link className="nav-link text-dark" to="/admin">Control de Moderación</Link></li>
+                        )}
 
                     </ul>
                 </div>
@@ -122,7 +122,7 @@ export default function NavbarLayout({ children }) {
                             <li><Link className="dropdown-item" to="/">Inicio</Link></li>
                             <li><Link className="dropdown-item" to="/profile/me">Perfil</Link></li>
                             <li><hr className="dropdown-divider" /></li>
-                            <li><button className="dropdown-item" onClick={handleOpenSettings}>Configuración</button></li>
+                            {/* <li><button className="dropdown-item" onClick={handleOpenSettings}>Configuración</button></li> */}
                             <li><button className="dropdown-item text-danger fw-bold" onClick={handleLogout}>Cerrar sesión</button></li>
                             {role === 'moderator' && (
                                 <li><Link className="dropdown-item" to="/moderation">Moderación</Link></li>
