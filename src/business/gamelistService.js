@@ -70,20 +70,71 @@ export async function getMostLikedGameLists() {
   }
 }
 
-
+// ¡CORRECCIÓN AQUÍ! Usar fetch directo y manejar 204 No Content
 export async function likeGameList(listId) {
   try {
-    return await put(`${BASE_URL}/like/${listId}`, null);
+    const response = await fetch(`${BASE_URL}/like/${listId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({}) // PUTs a menudo requieren un cuerpo, aunque sea vacío
+    });
+
+    if (!response.ok) {
+      // Manejo de errores detallado como en apiClient
+      let errorMsg = `Error al dar "me gusta": ${response.status}`;
+      try {
+        const errorBody = await response.json();
+        errorMsg = errorBody.detail || errorMsg;
+      } catch (_) {
+        try {
+          const text = await response.text();
+          errorMsg = text || errorMsg;
+        } catch (__) {}
+      }
+      throw new Error(errorMsg);
+    }
+    // Si el backend devuelve 204 No Content, no intentar leer JSON
+    if (response.status === 204) {
+      return null; // O un booleano para indicar éxito
+    }
+    // Si no es 204, y la respuesta es OK, entonces se espera JSON (menos común para like/unlike)
+    return response.json(); 
   } catch (error) {
     console.error(`Error liking game list with ID ${listId}:`, error);
     throw error;
   }
 }
 
-
+// ¡CORRECCIÓN AQUÍ! Usar fetch directo y manejar 204 No Content
 export async function unlikeGameList(listId) {
   try {
-    return await put(`${BASE_URL}/unlike/${listId}`, null);
+    const response = await fetch(`${BASE_URL}/unlike/${listId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({}) // PUTs a menudo requieren un cuerpo, aunque sea vacío
+    });
+
+    if (!response.ok) {
+      let errorMsg = `Error al quitar "me gusta": ${response.status}`;
+      try {
+        const errorBody = await response.json();
+        errorMsg = errorBody.detail || errorMsg;
+      } catch (_) {
+        try {
+          const text = await response.text();
+          errorMsg = text || errorMsg;
+        } catch (__) {}
+      }
+      throw new Error(errorMsg);
+    }
+    if (response.status === 204) {
+      return null; 
+    }
+    return response.json();
   } catch (error) {
     console.error(`Error unliking game list with ID ${listId}:`, error);
     throw error;

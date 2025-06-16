@@ -271,8 +271,6 @@ export default function GameDetail() {
                     setShowModal(false); 
                   }}
                 />
-                <button className="btn btn-outline-dark w-100 mb-2 rounded-pill">Add to list…</button>
-                <button className="btn btn-outline-dark w-100 rounded-pill">Share</button>
               </div>
             </div>
           </div>

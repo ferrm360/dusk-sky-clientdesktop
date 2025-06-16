@@ -20,7 +20,7 @@ export default function ProfileSubnav({ user, activeTab }) {
 
   return (
     <div className="bg-black text-white border-bottom px-4 py-2 d-flex align-items-center" style={{ zIndex: 1030 }}>
-      <img src={user.avatar} alt="Avatar" className="rounded-circle me-3" width="32" height="32" />
+      <img src={user.avatar_url} alt="Avatar" className="rounded-circle me-3" width="32" height="32" />
       <strong className="me-4">{user.name}</strong>
       <ul className="nav">
         {tabs.map(tab => (

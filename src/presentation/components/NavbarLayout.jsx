@@ -121,18 +121,9 @@ export default function NavbarLayout({ children }) {
                         <ul className="dropdown-menu dropdown-menu-end show position-absolute mt-2" style={{ right: 0 }}>
                             <li><Link className="dropdown-item" to="/">Inicio</Link></li>
                             <li><Link className="dropdown-item" to="/profile/me">Perfil</Link></li>
-                            <li><button className="dropdown-item" onClick={() => handleTabRedirect('games')}>Juegos</button></li>
-                            <li><button className="dropdown-item" onClick={() => handleTabRedirect('reviews')}>Reseñas</button></li>
-                            <li><button className="dropdown-item" onClick={() => handleTabRedirect('watchlist')}>Watchlist</button></li>
-                            <li><button className="dropdown-item" onClick={() => handleTabRedirect('lists')}>Listas</button></li>
-                            <li><button className="dropdown-item" onClick={() => handleTabRedirect('likes')}>Likes</button></li>
-                            {(role === 'admin'|| role === 'moderator') && (
-                                <li><button className="dropdown-item" onClick={() => handleTabRedirect('admin')}>Administración</button></li>
-                            )}
                             <li><hr className="dropdown-divider" /></li>
                             <li><button className="dropdown-item" onClick={handleOpenSettings}>Configuración</button></li>
                             <li><button className="dropdown-item text-danger fw-bold" onClick={handleLogout}>Cerrar sesión</button></li>
-
                             {role === 'moderator' && (
                                 <li><Link className="dropdown-item" to="/moderation">Moderación</Link></li>
                             )}
