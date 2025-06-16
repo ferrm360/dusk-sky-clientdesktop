@@ -1,4 +1,4 @@
-import UserSessionManager from "/@fs/C:/Users/neco3/Desktop/Proyecto final/dusk-sky-clientDesktop/src/business/UserSessionManager.js";
+import UserSessionManager from '@business/UserSessionManager'; 
 
 const BASE = '/profiles';
 
