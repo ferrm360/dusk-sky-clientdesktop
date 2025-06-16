@@ -1,0 +1,38 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-store/
+.env
+.env.local
+.DS_Store
+
+# Electron
+# Directorios de build
+dist/
+out/
+release/
+build/
+app/build/ # Si tu build de Electron genera cosas aquí
+# Archivos de caché/temporales
+.electron-builder/
+.electron-builder-cache/
+*.tgz
+*.log
+# Archivos de dependencias nativas (si los tienes)
+# binding.gyp
+# *.node
+
+# Archivos específicos de OS
+.DS_Store # macOS
+Thumbs.db # Windows
+desktop.ini # Windows
+
+# Archivos de VSC/IDE
+.vscode/
+.idea/
+
+# Archivos de sistema de empaquetado
+*.asar
+!.asar.unpacked # Si necesitas mantener esta carpeta específica
